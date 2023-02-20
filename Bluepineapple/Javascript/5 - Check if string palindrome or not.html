@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script>
+        function isStringPalindrome(inputString) {
+            let iterator1, iterator2 = 0, cnt = 0, reverseString = [];
+
+            reverseString = inputString.split("").reverse().join("");
+
+            if ((inputString.localeCompare(reverseString)) == 0) {
+                return 1;
+            }
+
+            else {
+                return 0;
+            }
+        }
+
+        function numberToString(number) {
+            switch (number) {
+                case 1: return "Palindrome string";
+                    break;
+
+                case 0: return "Not a palindrome string";
+                    break;
+            }
+        }
+
+        function checkPalindromeString() {
+            let output, expectedOutput, actualOutput, iterator;
+
+            let testCases = [["1", "level"], ["1", "anna"], ["0", "tiger"], ["0", "tree"], ["1", "earth"]];
+
+            let tableHeadings = ["Sr.No.", "Input", "Expected output", "Actual output", "Status"];
+            let status = ["passed", "failed"];
+
+            console.log("========================================================================================================");
+            console.log("\n" + tableHeadings[0] + "\t\t" + tableHeadings[1] + "\t\t" + tableHeadings[2] + "\t\t" + tableHeadings[3] + "\t\t" + tableHeadings[4]);
+            console.log("\n========================================================================================================");
+
+            for (iterator = 0; iterator < 5; iterator++) {
+                output = testCases[iterator][0];
+
+                expectedOutput = parseInt(output);
+
+                actualOutput = isStringPalindrome(testCases[iterator][1]);
+
+                if (expectedOutput == actualOutput) {
+                    console.log("\n" + "\t\t" + iterator + "\t\t" + testCases[iterator][1] + "\t\t" + numberToString(expectedOutput) + "\t\t" + numberToString(actualOutput) + "\t\t" + status[0]);
+
+                    console.log("\n-------------------------------------------------------------------------------------------------------------------------------------------------");
+                }
+
+                else {
+                    console.log("\n" + "\t\t" + iterator + "\t\t" + testCases[iterator][1] + "\t\t" + numberToString(expectedOutput) + "\t\t" + numberToString(actualOutput) + "\t\t" + status[1]);
+
+                    console.log("\n-------------------------------------------------------------------------------------------------------------------------------------------------");
+                }
+
+            }
+        }
+
+        checkPalindromeString();
+    </script>
+</body>
+
+</html>
