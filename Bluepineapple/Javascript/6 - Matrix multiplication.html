@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script>
+        function matrixInitializer(row, column) {
+            const matrix = Array(row).fill(0).map((row) => (row = Array(column).fill(0)));
+
+            return matrix;
+        }
+
+        function matrixInput(row, column, elements) {
+            let iterator1, iterator2, count = 0;
+
+            let matrix = matrixInitializer(row, column);
+
+            elements = elements.split(",");
+
+            for (iterator1 = 0; iterator1 < row; iterator1++) {
+                for (iterator2 = 0; iterator2 < column; iterator2++) {
+                    matrix[iterator1][iterator2] = parseInt(elements[count]);
+                    count++;
+                }
+            }
+            return matrix;
+        }
+
+        // function displayMatrix(row, column, matrix) {
+        //     let iterator1, iterator2;
+
+        //     for (iterator1 = 0; iterator1 < row; iterator1++) {
+        //         for (iterator2 = 0; iterator2 < column; iterator2++) {
+        //             console.log(matrix[row][column]);
+        //         }
+        //         console.log("\n");
+        //     }
+        // }
+
+        function matrixMultiplication(rowA, columnA, matrixA, rowB, columnB, matrixB) {
+            if ((rowA == rowB) && (columnA == columnB)) {
+                if (rowA == columnB) {
+                    let iterator1, iterator2, iterator3;
+
+                    let matrixC = matrixInitializer(rowA, columnB);
+
+                    for (iterator1 = 0; iterator1 < rowA; iterator1++) {
+                        for (iterator3 = 0; iterator3 < rowA; iterator3++) {
+                            for (iterator2 = 0; iterator2 < columnB; iterator2++) {
+                                matrixC[iterator1][iterator3] += matrixA[iterator1][iterator2] * matrixB[iterator2][iterator3];
+                            }
+                        }
+                    }
+
+                    return matrixC;
+                }
+
+                else {
+                    return [[-1]]; //Matrix multiplication not possible
+                }
+            }
+
+            else
+            {
+                return [[-2]]; //Program is designed only for square matrices
+            }
+        }
+
+        function testMatrixMultiplication() {
+            let testCases = [
+                [2, 2, "1,2,3,4", 2, 2, "1,2,3,4", 2, 2, "7,10,15,22"],
+                [1, 2, "1,2", 2, 1, "1,2", 1, 1, "-2"],
+                [2, 1, "1,2", 1, 2, "1,2", 1, 1, "-1"]]
+
+            let iterator, rowA, rowB, rowC, columnA, columnB, columnC, elementsA, elementsB, elementsC;
+
+            let matrixA = matrixInitializer(rowA, columnA);
+            let matrixB = matrixInitializer(rowB, columnB);
+            let matrixC = matrixInitializer(rowC, columnC);
+            let actualOutput = matrixInitializer(rowA, columnB);
+
+            let tableHeadings = ["Sr.No.", "Input", "Expected output", "Actual output", "Status"];
+            let status = ["passed", "failed"];
+
+            console.log("========================================================================================================");
+            console.log("\n" + tableHeadings[0] + "\t\t" + tableHeadings[1] + "\t\t" + tableHeadings[2] + "\t\t" + tableHeadings[3] + "\t\t" + tableHeadings[4]);
+            console.log("\n========================================================================================================");
+
+            for (iterator = 0; iterator < testCases.length; iterator++) {
+                rowA = testCases[iterator][0];
+                columnA = testCases[iterator][1];
+                elementsA = testCases[iterator][2];
+
+                rowB = testCases[iterator][3];
+                columnB = testCases[iterator][4];
+                elementsB = testCases[iterator][5];
+
+                rowC = testCases[iterator][6];
+                columnC = testCases[iterator][7];
+                elementsC = testCases[iterator][8];
+
+                matrixA = matrixInput(rowA, columnA, elementsA);
+                matrixB = matrixInput(rowB, columnB, elementsB);
+                matrixC = matrixInput(rowC, columnC, elementsC);
+
+                actualOutput = matrixMultiplication(rowA, columnA, matrixA, rowB, columnB, matrixB);
+
+                if (JSON.stringify(matrixC) == JSON.stringify(actualOutput)) {
+                    console.log("\n" + iterator + "\t\t" + "Matrix A=" + matrixA + "," + "Matrix B=" + matrixA + "\t\t" + matrixC + "\t\t" + actualOutput + "\t\t" + status[0]);
+
+                    console.log("\n--------------------------------------------------------------------------------------------------------");
+                }
+
+                else {
+                    console.log("\n" + iterator + "\t\t" + "Matrix A=" + matrixA + "," + "Matrix B=" + matrixA + "\t\t" + matrixC + "\t\t" + actualOutput + "\t\t" + status[1]);
+
+                    console.log("\n--------------------------------------------------------------------------------------------------------");
+                }
+            }
+        }
+
+        testMatrixMultiplication();
+    </script>
+</body>
+
+</html>
