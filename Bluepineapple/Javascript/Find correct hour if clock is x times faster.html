@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script>
+        function validateTime(hour, minutes) {
+            if ((hour >= 1) && (hour <= 24)) {
+                if ((minutes >= 0) && (minutes <= 60)) {
+                    return 1;
+                }
+
+                else {
+                    return 0;
+                }
+            }
+
+            else {
+                return 0;
+            }
+        }
+
+        function hourToMinutes(hour, minutes) {
+            let totalMinutes;
+
+            totalMinutes = (hour * 60) + minutes;
+
+            return totalMinutes;
+        }
+
+        function processCorrectHour(x, hour, minutes) {
+            let iterator, hourToMin, speed, totalMinutes, actualHour;
+
+            if (x >= 0) {
+                if (validateTime(hour, minutes)) {
+                    hourToMin = hourToMinutes(hour, minutes);
+
+                    for (iterator = 1; iterator <= 24; iterator++) {
+                        if (iterator == hour) {
+                            speed = x * iterator;
+                        }
+                    }
+
+                    totalMinutes = hourToMin - speed;
+
+                    actualHour = Math.round(totalMinutes / 60);
+
+                    return actualHour;
+                }
+            }
+
+            else {
+                return -1; //This program is not designed for slower clock speed;
+            }
+        }
+
+        function testCorrectHour() {
+            let x, hour, minutes, actualOutput, expectedOutput, iterator;
+
+            let testCases = [[15, 2, 30, 2], [15, 5, 0, 4], [15, 11, 15, 9], [-15, 8, 45, -1], [15, 6, 15, 6]];
+
+            let tableHeadings = ["Sr.No.", "Input", "Expected output", "Actual output", "Status"];
+            let status = ["passed", "failed"];
+
+            console.log("========================================================================================================");
+            console.log("\n" + tableHeadings[0] + "\t\t" + tableHeadings[1] + "\t\t" + tableHeadings[2] + "\t\t" + tableHeadings[3] + "\t\t" + tableHeadings[4]);
+            console.log("\n========================================================================================================");
+
+            for (iterator = 0; iterator < 5; iterator++) {
+                x = testCases[iterator][0];
+                hour = testCases[iterator][1];
+                minutes = testCases[iterator][2];
+                expectedOutput = testCases[iterator][3];
+
+                actualOutput = processCorrectHour(x, hour, minutes);
+
+                if (expectedOutput == actualOutput) {
+                    console.log("\n" + "\t\t" + iterator + "\t\t" + "Fast by=" + x + ", " + "hour=" + hour + ", " + "minutes=" + minutes + "\t\t" + expectedOutput + "\t\t" + actualOutput + "\t\t" + status[0]);
+
+                    console.log("\n-------------------------------------------------------------------------------------------------------------------------------------------------");
+                }
+
+                else {
+                    console.log("\n" + "\t\t" + iterator + "\t\t" + "Fast by=" + x + ", " + "hour=" + hour + ", " + "minutes=" + minutes + "\t\t" + expectedOutput + "\t\t" + actualOutput + "\t\t" + status[1]);
+
+                    console.log("\n-------------------------------------------------------------------------------------------------------------------------------------------------");
+                }
+            }
+        }
+
+        testCorrectHour();
+    </script>
+</body>
+
+</html>

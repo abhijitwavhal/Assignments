@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="demo"></div>
+
+    <script>
+        function isPerfectNumber(number) {
+            let iterator, divisor = 0;
+
+            for (iterator = 1; iterator < number; iterator++) {
+                if (number % iterator == 0) {
+                    divisor = divisor + iterator;
+                }
+            }
+
+            if (divisor == number) {
+                return 1;
+            }
+
+            else {
+                return 0;
+            }
+        }
+
+        function numberToString(number) {
+            switch (number) {
+                case 1: return "Perfect number";
+                    break;
+
+                case 0: return "Not a perfect number";
+            }
+        }
+
+        function testPerfectNumber()
+        {
+            let day, month, year, expectedOutput, actualOutput, iterator;
+
+            let testCases = [[ 1, 6 ], [ 1, 28 ], [ 0, 35 ], [ 0, 99 ], [ 0, 496 ]];
+
+            let tableHeadings = ["Sr.No.", "Input", "Expected output", "Actual output", "Status"];
+	        let status = ["passed", "failed"];
+
+            console.log("========================================================================================================");
+            console.log("\n" + tableHeadings[0] +"\t\t" + tableHeadings[1] +"\t\t" + tableHeadings[2] +"\t\t" + tableHeadings[3] +"\t\t" + tableHeadings[4]);
+	        console.log("\n========================================================================================================");
+	
+            for (iterator = 0; iterator < 5; iterator++) {
+                expectedOutput = testCases[iterator][0];
+                actualOutput = isPerfectNumber(testCases[iterator][1]);
+
+                if (expectedOutput == actualOutput) {
+                    console.log("\n" +"\t\t" + iterator +"\t\t" + testCases[iterator][1] +"\t\t" + numberToString(expectedOutput) +"\t\t" + numberToString(actualOutput) +"\t\t" + status[0]);
+
+                    console.log("\n----------------------------------------------------------------------------------------------------------------");
+                }
+
+                else {
+                    console.log("\n" +"\t\t" + iterator +"\t\t" + testCases[iterator][1] +"\t\t" + numberToString(expectedOutput) +"\t\t" + numberToString(actualOutput) +"\t\t" + status[1]);
+
+                    printf("\n----------------------------------------------------------------------------------------------------------------");
+                }
+            }
+        }
+
+        testPerfectNumber();
+    </script>
+</body>
+
+</html>
