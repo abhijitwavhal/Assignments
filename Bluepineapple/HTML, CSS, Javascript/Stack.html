@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function createStack() {
+            let stackSize = prompt("Enter the size of the stack you want to create:");
+
+            let stack = new Array(stackSize);
+
+            return stack;
+        }
+
+        function isArray(stack) {
+            if (typeof (stack) == "object") {
+                return 1;
+            }
+
+            else {
+                console.log("Please pass only array to this function");
+                return 0;
+            }
+        }
+
+        function sizeofStack(stack) {
+            if (isArray(stack) == 1) {
+                let stackSize = stack.length;
+
+                return stackSize;
+            }
+
+            else {
+                console.log("Please pass only array to this function");
+            }
+        }
+
+        function filterStack(stack) {
+            if (isArray(stack) == 1) {
+                let stackSize = sizeofStack(stack);
+
+                if (stackSize != 0) {
+                    let filteredStack = new Array(stackSize);
+                    let iterator;
+
+                    for (iterator = 0; iterator < stackSize; iterator++) {
+                        if (stack[iterator] != undefined) {
+                            filteredStack.push(stack[iterator]);
+                        }
+                    }
+
+                    return filteredStack;
+                }
+
+                else {
+                    console.log("Stack of size 0")
+                    return 0;
+                }
+            }
+
+            else {
+                console.log("Please pass only array to this function");
+                return 0;
+            }
+        }
+        function isFull(stack) {
+            if (isArray(stack) == 1) {
+                let stackSize = sizeofStack(stack);
+                let iterator, count = 0;
+
+                if (stackSize != 0) {
+                    stack = filterStack(stack);
+
+                    for (iterator = 0; iterator < stackSize; iterator++) {
+                        if (stack[iterator] === undefined) {
+                            count++;
+                        }
+                    }
+
+                    if(count == stackSize){
+                        return 0;
+                    }
+
+                    else if(count < stackSize){
+                        return -1; //to denote stack is partially filled
+                    }
+
+                    else if (count == 0) {
+                        return 1;
+                    }
+                }
+
+                else {
+                    console.log("Stack of size 0");
+                }
+            }
+
+            else {
+                console.log("Please pass only array to this function");
+            }
+        }
+
+        function isEmpty(stack) {
+            if (isArray(stack) == 1) {
+                let stackSize = sizeofStack(stack);
+                let iterator, count = 0;
+
+                if (stackSize != 0) {
+                    stack = filterStack(stack);
+
+                    if(isFull(stack) == 0){
+                        return 1;
+                    }
+
+                    else if (isFull(stack) == 1) {
+                        return 0;
+                    }
+                }
+
+                else {
+                    console.log("Stack of size 0");
+                }
+            }
+
+            else {
+                console.log("Please pass only array to this function");
+            }
+        }
+
+        function stackOperations(){
+            let stack, choice;
+
+            let menu = `--------MENU--------
+            1)Create Stack
+            2)Check size of stack
+            3)Check if stack is empty
+            4)Check if stack is full
+            5)View top element of stack
+            6)Push element in stack
+            7)Pop element of stack
+            8)Display stack
+            9)Insert element at index
+            10)Search element
+            11)Check if element exists`;
+
+            do{
+               
+                choice = parseInt(prompt(menu + "\nEnter your choice:"));
+
+                switch(choice){
+                    case 0: break;
+                    break;
+
+                    case 1: stack = createStack();
+                    break;
+
+                    case 2: sizeofStack(stack);
+                    break;
+
+                    case 3: isEmpty(stack);
+                    break;
+
+                    case 4: isFull(stack);
+                    break;
+
+                    default: alert("Enter a valid choice");
+                }
+            }while(choice != 0);
+        }
+
+        stackOperations();
+    </script>
+</body>
+
+</html>
