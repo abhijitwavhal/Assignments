@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let numberArray = [1, 2, 3, 4, 5];
+
+        let count = 0, copyOfCount = 0;
+
+        function countElements() {
+            if (numberArray[count] != undefined) {
+                count++;
+                countElements();
+            }
+
+            else {
+                console.log("There are total " + count + " elements in the array");
+            }
+        }
+
+        function sumOfElements(sum = 0) {
+            let numberArray = [1, 2, 3, 4, 5];
+
+            if (count - 1 < 0) {
+                return sum;
+            }
+
+            else {
+                count--;
+                return sum + sumOfElements(numberArray[count]);
+            }
+        }
+
+        countElements();
+
+        copyOfCount = count;
+
+        let sum = sumOfElements();
+
+        console.log("Sum of array elements = " + sum);
+
+        let average = sum / copyOfCount;
+
+        console.log("Average of array elements = " + average);
+    </script>
+</body>
+
+</html>
