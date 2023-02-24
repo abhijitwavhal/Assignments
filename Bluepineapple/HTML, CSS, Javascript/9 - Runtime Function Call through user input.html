@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const functionList = {
+            sayHello : function Hello() {
+                console.log("Hello");
+            },
+
+            sayBye : function Bye() {
+                console.log("Bye");
+            },
+
+            greet : function Welcome() {
+                console.log("Welcome");
+            },
+        };
+
+        let functionName = prompt("Enter the function name:");
+
+        const callFunction = function (functionName) {
+            return functionList[functionName];
+            
+        };
+
+        const dynamicFunction = callFunction(functionName);
+
+        dynamicFunction();
+    </script>
+</body>
+
+</html>
